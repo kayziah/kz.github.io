@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KZ | Catalogue</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link rel="icon" type="image/png" href="https://images.freeimages.com/fic/images/icons/2297/super_mario/256/retro_coin.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        
+        .bg-navy { background-color: #0A192F; }
+        .text-orange { color: #FF8C00; }
+        .bg-orange { background-color: #FF8C00; }
+
+        @keyframes subtle-zoom {
+            from { transform: scale(1); }
+            to { transform: scale(1.05); }
+        }
+        .animate-subtle-zoom { animation: subtle-zoom 15s infinite alternate ease-in-out; }
+        
+        @keyframes fade-in {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in { animation: fade-in 0.8s ease-out forwards; }
+
+        .nav-glass {
+            background-color: rgba(10, 25, 47, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .product-card:hover img { transform: scale(1.08); }
+        
+        .page-hidden { opacity: 0; pointer-events: none; display: none; }
+
+        .snap-logo:hover {
+            filter: drop-shadow(0 0 8px rgba(255, 140, 0, 0.5));
+        }
+        
+        /* Style spécifique pour le logo */
+        .logo-font { font-style: italic; }
+
+        .coming-soon-text {
+            background: linear-gradient(90deg, #1e293b 0%, #FF8C00 50%, #1e293b 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 4s linear infinite;
+        }
+
+        @keyframes shine {
+            to { background-position: 200% center; }
+        }
+    </style>
+</head>
+<body class="bg-navy text-white selection:bg-orange selection:text-white">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-500 py-8">
+        <div class="max-w-7xl mx-auto px-6 flex justify-center items-center">
+            <button onclick="showCatalogue()" class="text-4xl font-black tracking-tighter uppercase group logo-font">
+                KZ<span class="text-orange group-hover:animate-ping">.</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- VUE 1 : CATALOGUE -->
+    <main id="catalogue-view" class="animate-fade-in">
+        <header class="relative h-[70vh] flex items-center overflow-hidden border-b border-white/5">
+            <div class="absolute inset-0 z-0">
+                <div class="absolute inset-0 bg-gradient-to-b from-navy/20 to-navy z-10"></div>
+                <img src="https://static.vecteezy.com/ti/photos-gratuite/p1/2817052-abstrait-flou-et-defocalise-interieur-hotel-de-luxe-gratuit-photo.jpg" class="w-full h-full object-cover opacity-30 animate-subtle-zoom" alt="Ambiance Luxe">
+            </div>
+            <div class="relative z-20 max-w-7xl mx-auto px-6 w-full text-center">
+                <p class="text-orange font-black tracking-[0.6em] uppercase mb-8 text-[10px]">Vente en main-propre et livraison</p>
+                <h2 class="text-7xl md:text-9xl font-black tracking-tighter uppercase leading-none">
+                    Shop tes <br> <span class="text-orange">Sapes</span>
+                </h2>
+            </div>
+        </header>
+
+        <!-- SECTION PRODUITS -->
+        <section class="py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-20 mb-32">
+                    
+                    <!-- Article 1 -->
+                    <div class="product-card group cursor-pointer" onclick="goToArticle('lv-bonnet')">
+                        <div class="relative aspect-[4/5] overflow-hidden bg-gray-50 mb-8 border border-gray-100">
+                            <img src="https://fr.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-bonnet-my-monogram-eclipse--M73469_PM2_Front%20view.jpg?impolicy=bgcolor&bgcolor=%23f8f8f8" class="w-full h-full object-cover transition-transform duration-1000" alt="Louis Vuitton Bonnet">
+                            <div class="absolute bottom-10 left-10 overflow-hidden">
+                                <span class="inline-block translate-y-full group-hover:translate-y-0 transition-transform duration-500 text-[10px] font-black tracking-[0.4em] uppercase bg-navy text-white px-6 py-3">Explorer</span>
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <p class="text-[10px] font-black text-orange uppercase tracking-[0.5em]">Louis Vuitton</p>
+                            <h3 class="text-4xl font-black tracking-tighter uppercase text-black group-hover:text-orange transition-colors duration-300 leading-none">
+                                Bonnet My Monogram Éclipse
+                            </h3>
+                        </div>
+                    </div>
+
+                    <!-- Article 2 -->
+                    <div class="product-card group cursor-pointer" onclick="goToArticle('ami-pull')">
+                        <div class="relative aspect-[4/5] overflow-hidden bg-gray-50 mb-8 border border-gray-100">
+                            <img src="https://www.amiparis.com/cdn/shop/files/BFUSW035.730_907c60d6-c7f5-42db-ad23-09c19e76c163.jpg?v=1767930771&width=2560" class="w-full h-full object-cover transition-transform duration-1000" alt="Ami Pull">
+                            <div class="absolute bottom-10 left-10 overflow-hidden">
+                                <span class="inline-block translate-y-full group-hover:translate-y-0 transition-transform duration-500 text-[10px] font-black tracking-[0.4em] uppercase bg-navy text-white px-6 py-3">Explorer</span>
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <p class="text-[10px] font-black text-orange uppercase tracking-[0.5em]">Ami Paris</p>
+                            <h3 class="text-4xl font-black tracking-tighter uppercase text-black group-hover:text-orange transition-colors duration-300 leading-none">
+                                Pull Ami de Cœur
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Texte Informatif "La suite" -->
+                <div class="text-center py-10 border-t border-gray-100">
+                    <p class="text-4xl md:text-5xl font-black tracking-tighter uppercase coming-soon-text">
+                        La suite, c'est pour bientôt...
+                    </p>
+                    <p class="text-gray-400 text-[10px] font-bold uppercase tracking-[0.4em] mt-4">
+                        Nouveautés en préparation • Reste connecté
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- VUE 2 : PAGE DETAIL -->
+    <main id="article-view" class="page-hidden py-32 animate-fade-in">
+        <div class="max-w-7xl mx-auto px-6">
+            <button onclick="showCatalogue()" class="flex items-center gap-4 text-orange font-black uppercase tracking-[0.3em] text-[10px] mb-16 hover:-translate-x-2 transition-transform">
+                <i data-lucide="arrow-left" size="16"></i>Retour
+            </button>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-24 items-start">
+                <div class="aspect-[3/4] bg-white/5 overflow-hidden border border-white/5">
+                    <img id="detail-img" src="" class="w-full h-full object-cover" alt="Detail Produit">
+                </div>
+
+                <div class="lg:sticky lg:top-32 text-white">
+                    <p id="detail-brand" class="text-orange font-black uppercase tracking-[0.6em] mb-6 text-xs"></p>
+                    <h2 id="detail-title" class="text-6xl md:text-8xl font-black tracking-tighter uppercase leading-none mb-6"></h2>
+                    <div class="flex items-baseline gap-6 mb-10">
+                    <div class="h-px w-20 bg-orange"></div>
+                    <span id="detail-price" class="text-5xl font-black tracking-tighter text-orange"></span>
+                    </div>
+
+                    <p class="text-gray-400 text-lg font-light mb-10 leading-relaxed">En main-propre sur Nancy 54, et en livraison dans toute la France.</p>
+                    
+                    <div class="grid grid-cols-3 gap-8 py-10 border-y border-white/10 mb-16">
+                        <div>
+                            <span class="block text-[10px] font-black text-white/30 uppercase tracking-[0.3em] mb-2">État</span>
+                            <span class="text-white font-bold">Neuf</span>
+                        </div>
+                        <div>
+                            <span class="block text-[10px] font-black text-white/30 uppercase tracking-[0.3em] mb-2">Couleur</span>
+                            <span id="detail-color" class="text-white font-bold"></span>
+                        </div>
+                        <div>
+                            <span class="block text-[10px] font-black text-white/30 uppercase tracking-[0.3em] mb-2">En stock</span>
+                            <span id="detail-stock" class="text-orange font-bold uppercase"></span>
+                        </div>
+                    </div>
+                    
+                    <a href="https://www.snapchat.com/@kayziahhh" target="_blank" class="w-full py-8 bg-orange text-white font-black uppercase tracking-[0.4em] text-xs hover:bg-white hover:text-navy transition-all flex items-center justify-center">
+                        Contacter
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-navy py-24 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h2 class="text-5xl font-black mb-10 tracking-tighter logo-font">KZ<span class="text-orange">.</span></h2>
+            <div class="flex justify-center mb-16">
+                <a href="https://www.snapchat.com/@kayziahhh" target="_blank" class="snap-logo transition-all hover:scale-110 inline-block">
+                    <img src="https://www.logo.wine/a/logo/Snapchat/Snapchat-Ghost-Outlined-Logo.wine.svg" alt="Snapchat" class="w-20 h-20 md:w-24 md:h-24">
+                </a>
+            </div>
+            <p class="text-gray-600 text-[10px] font-black uppercase tracking-[0.6em]">© 2026 KZ</p>
+        </div>
+    </footer>
+
+    <script>
+        const tg = window.Telegram.WebApp;
+        tg.expand(); // ouvre la mini-app en plein écran
+
+        lucide.createIcons();
+        const articles = {
+            'lv-bonnet': { 
+                brand: "Louis Vuitton", 
+                title: "Bonnet My Monogram Éclipse",
+                price: "20€", 
+                color: "Noir", 
+                stock: "3 dispos", 
+                img: "https://fr.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-bonnet-my-monogram-eclipse--M73469_PM2_Front%20view.jpg?impolicy=bgcolor&bgcolor=%23f8f8f8" 
+            },
+            'ami-pull': { 
+                brand: "Ami Paris", 
+                title: "Pull Ami de Cœur", 
+                price: "40€",
+                color: "Noir", 
+                stock: "3 dispos", 
+                img: "https://www.amiparis.com/cdn/shop/files/BFUSW035.730_907c60d6-c7f5-42db-ad23-09c19e76c163.jpg?v=1767930771&width=2560" 
+            }
+        };
+
+        const navbar = document.getElementById('navbar');
+        const catView = document.getElementById('catalogue-view');
+        const artView = document.getElementById('article-view');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) navbar.classList.add('nav-glass');
+            else navbar.classList.remove('nav-glass');
+        });
+
+        function goToArticle(id) {
+            const data = articles[id];
+            document.getElementById('detail-img').src = data.img;
+            document.getElementById('detail-brand').innerText = data.brand;
+            document.getElementById('detail-title').innerText = data.title;
+            document.getElementById('detail-price').innerText = data.price;
+            document.getElementById('detail-color').innerText = data.color;
+            document.getElementById('detail-stock').innerText = data.stock;
+            catView.classList.add('page-hidden');
+            artView.classList.remove('page-hidden');
+            window.scrollTo(0, 0);
+        }
+
+        function showCatalogue() {
+            artView.classList.add('page-hidden');
+            catView.classList.remove('page-hidden');
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html>
