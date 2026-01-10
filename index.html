@@ -38,11 +38,6 @@
         
         .page-hidden { opacity: 0; pointer-events: none; display: none; }
 
-        .snap-logo:hover {
-            filter: drop-shadow(0 0 8px rgba(255, 140, 0, 0.5));
-        }
-        
-        /* Style spécifique pour le logo */
         .logo-font { font-style: italic; }
 
         .coming-soon-text {
@@ -56,14 +51,38 @@
         @keyframes shine {
             to { background-position: 200% center; }
         }
+
+        /* Styles Carrousel */
+        .carousel-container {
+            display: flex;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .carousel-slide {
+            min-width: 100%;
+            height: 100%;
+        }
+
+        /* Amélioration de la visibilité des flèches */
+        .carousel-btn {
+            background-color: rgba(10, 25, 47, 0.6);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            color: white;
+        }
+        .carousel-btn:hover {
+            background-color: #FF8C00;
+            border-color: #FF8C00;
+            transform: translateY(-50%) scale(1.1);
+        }
     </style>
 </head>
 <body class="bg-navy text-white selection:bg-orange selection:text-white">
 
     <!-- Navigation -->
-    <nav id="navbar" class="fixed w-full z-50 transition-all duration-500 py-8">
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-500 py-6 md:py-8">
         <div class="max-w-7xl mx-auto px-6 flex justify-center items-center">
-            <button onclick="showCatalogue()" class="text-4xl font-black tracking-tighter uppercase group logo-font">
+            <button onclick="showCatalogue()" class="text-3xl md:text-4xl font-black tracking-tighter uppercase group logo-font">
                 KZ<span class="text-orange group-hover:animate-ping">.</span>
             </button>
         </div>
@@ -71,64 +90,46 @@
 
     <!-- VUE 1 : CATALOGUE -->
     <main id="catalogue-view" class="animate-fade-in">
-        <header class="relative h-[70vh] flex items-center overflow-hidden border-b border-white/5">
+        <header class="relative h-[60vh] md:h-[70vh] flex items-center overflow-hidden border-b border-white/5">
             <div class="absolute inset-0 z-0">
                 <div class="absolute inset-0 bg-gradient-to-b from-navy/20 to-navy z-10"></div>
                 <img src="https://static.vecteezy.com/ti/photos-gratuite/p1/2817052-abstrait-flou-et-defocalise-interieur-hotel-de-luxe-gratuit-photo.jpg" class="w-full h-full object-cover opacity-30 animate-subtle-zoom" alt="Ambiance Luxe">
             </div>
             <div class="relative z-20 max-w-7xl mx-auto px-6 w-full text-center">
-                <p class="text-orange font-black tracking-[0.6em] uppercase mb-8 text-[10px]">Vente en main-propre et livraison</p>
-                <h2 class="text-7xl md:text-9xl font-black tracking-tighter uppercase leading-none">
+                <p class="text-orange font-black tracking-[0.4em] md:tracking-[0.6em] uppercase mb-6 md:mb-8 text-[8px] md:text-[10px]">Vente en main-propre et livraison</p>
+                <h2 class="text-6xl md:text-9xl font-black tracking-tighter uppercase leading-none">
                     Shop tes <br> <span class="text-orange">Sapes</span>
                 </h2>
             </div>
         </header>
 
         <!-- SECTION PRODUITS -->
-        <section class="py-24 bg-white">
-            <div class="max-w-7xl mx-auto px-6">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-20 mb-32">
+        <section class="py-12 md:py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4 md:px-6">
+                <div class="grid grid-cols-2 lg:grid-cols-2 gap-4 md:gap-20 mb-24 md:mb-32">
                     
                     <!-- Article 1 -->
-                    <div class="product-card group cursor-pointer" onclick="goToArticle('lv-bonnet')">
-                        <div class="relative aspect-[4/5] overflow-hidden bg-gray-50 mb-8 border border-gray-100">
-                            <img src="https://fr.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-bonnet-my-monogram-eclipse--M73469_PM2_Front%20view.jpg?impolicy=bgcolor&bgcolor=%23f8f8f8" class="w-full h-full object-cover transition-transform duration-1000" alt="Louis Vuitton Bonnet">
-                            <div class="absolute bottom-10 left-10 overflow-hidden">
-                                <span class="inline-block translate-y-full group-hover:translate-y-0 transition-transform duration-500 text-[10px] font-black tracking-[0.4em] uppercase bg-navy text-white px-6 py-3">Explorer</span>
-                            </div>
+                    <div class="product-card group cursor-pointer" onclick="goToArticle('bonnetlvmonogramnoir')">
+                        <div class="relative aspect-[4/5] overflow-hidden bg-gray-50 mb-4 md:mb-8 border border-gray-100">
+                            <img src="https://fr.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-bonnet-my-monogram-eclipse--M73469_PM2_Front%20view.jpg?impolicy=bgcolor&bgcolor=%23f8f8f8" class="w-full h-full object-cover transition-transform duration-1000" alt="Bonnet Louis Vuitton">
                         </div>
-                        <div class="space-y-2">
-                            <p class="text-[10px] font-black text-orange uppercase tracking-[0.5em]">Louis Vuitton</p>
-                            <h3 class="text-4xl font-black tracking-tighter uppercase text-black group-hover:text-orange transition-colors duration-300 leading-none">
-                                Bonnet My Monogram Éclipse
+                        <div class="space-y-1 md:space-y-2">
+                            <p class="text-[8px] md:text-[10px] font-black text-orange uppercase tracking-[0.3em] md:tracking-[0.5em]">Louis Vuitton</p>
+                            <h3 class="text-lg md:text-4xl font-black tracking-tighter uppercase text-black group-hover:text-orange transition-colors duration-300 leading-tight md:leading-none">
+                                Bonnet Monogram Éclipse
                             </h3>
                         </div>
                     </div>
 
-                    <!-- Article 2 -->
-                    <div class="product-card group cursor-pointer" onclick="goToArticle('ami-pull')">
-                        <div class="relative aspect-[4/5] overflow-hidden bg-gray-50 mb-8 border border-gray-100">
-                            <img src="https://www.amiparis.com/cdn/shop/files/BFUSW035.730_907c60d6-c7f5-42db-ad23-09c19e76c163.jpg?v=1767930771&width=2560" class="w-full h-full object-cover transition-transform duration-1000" alt="Ami Pull">
-                            <div class="absolute bottom-10 left-10 overflow-hidden">
-                                <span class="inline-block translate-y-full group-hover:translate-y-0 transition-transform duration-500 text-[10px] font-black tracking-[0.4em] uppercase bg-navy text-white px-6 py-3">Explorer</span>
-                            </div>
-                        </div>
-                        <div class="space-y-2">
-                            <p class="text-[10px] font-black text-orange uppercase tracking-[0.5em]">Ami Paris</p>
-                            <h3 class="text-4xl font-black tracking-tighter uppercase text-black group-hover:text-orange transition-colors duration-300 leading-none">
-                                Pull Ami de Cœur
-                            </h3>
-                        </div>
-                    </div>
                 </div>
 
                 <!-- Texte Informatif "La suite" -->
-                <div class="text-center py-10 border-t border-gray-100">
-                    <p class="text-4xl md:text-5xl font-black tracking-tighter uppercase coming-soon-text">
-                        La suite, c'est pour bientôt...
+                <div class="text-center py-10 md:py-20 border-t border-gray-100">
+                    <p class="text-2xl md:text-5xl font-black tracking-tighter uppercase coming-soon-text">
+                        La suite, prochainement...
                     </p>
-                    <p class="text-gray-400 text-[10px] font-bold uppercase tracking-[0.4em] mt-4">
-                        Nouveautés en préparation • Reste connecté
+                    <p class="text-gray-400 text-[8px] md:text-[10px] font-bold uppercase tracking-[0.3em] md:tracking-[0.4em] mt-4">
+                        Restez connecté
                     </p>
                 </div>
             </div>
@@ -136,43 +137,60 @@
     </main>
 
     <!-- VUE 2 : PAGE DETAIL -->
-    <main id="article-view" class="page-hidden py-32 animate-fade-in">
+    <main id="article-view" class="page-hidden py-24 md:py-32 animate-fade-in">
         <div class="max-w-7xl mx-auto px-6">
-            <button onclick="showCatalogue()" class="flex items-center gap-4 text-orange font-black uppercase tracking-[0.3em] text-[10px] mb-16 hover:-translate-x-2 transition-transform">
+            <button onclick="showCatalogue()" class="flex items-center gap-4 text-orange font-black uppercase tracking-[0.3em] text-[10px] mb-12 md:mb-16 hover:-translate-x-2 transition-transform">
                 <i data-lucide="arrow-left" size="16"></i>Retour
             </button>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-24 items-start">
-                <div class="aspect-[3/4] bg-white/5 overflow-hidden border border-white/5">
-                    <img id="detail-img" src="" class="w-full h-full object-cover" alt="Detail Produit">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-24 items-start">
+                
+                <!-- CARROUSEL D'IMAGES -->
+                <div class="relative aspect-[3/4] bg-white/5 overflow-hidden border border-white/5 group/carousel">
+                    <div id="carousel-track" class="carousel-container h-full">
+                        <!-- Les images seront injectées ici par JS -->
+                    </div>
+                    
+                    <!-- Boutons de navigation (visibles sur desktop) -->
+                    <button onclick="prevSlide()" class="carousel-btn absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full opacity-0 group-hover/carousel:opacity-100 transition-all duration-300 z-10 hidden md:block">
+                        <i data-lucide="chevron-left"></i>
+                    </button>
+                    <button onclick="nextSlide()" class="carousel-btn absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full opacity-0 group-hover/carousel:opacity-100 transition-all duration-300 z-10 hidden md:block">
+                        <i data-lucide="chevron-right"></i>
+                    </button>
+
+                    <!-- Indicateurs de position -->
+                    <div id="carousel-dots" class="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+                        <!-- Les points seront injectés ici -->
+                    </div>
                 </div>
 
                 <div class="lg:sticky lg:top-32 text-white">
-                    <p id="detail-brand" class="text-orange font-black uppercase tracking-[0.6em] mb-6 text-xs"></p>
-                    <h2 id="detail-title" class="text-6xl md:text-8xl font-black tracking-tighter uppercase leading-none mb-6"></h2>
-                    <div class="flex items-baseline gap-6 mb-10">
-                    <div class="h-px w-20 bg-orange"></div>
-                    <span id="detail-price" class="text-5xl font-black tracking-tighter text-orange"></span>
+                    <p id="detail-brand" class="text-orange font-black uppercase tracking-[0.6em] mb-4 md:mb-6 text-[10px] md:text-xs"></p>
+                    <h2 id="detail-title" class="text-5xl md:text-8xl font-black tracking-tighter uppercase leading-none mb-6"></h2>
+                    <div class="flex items-baseline gap-4 md:gap-6 mb-8 md:mb-10">
+                        <div class="h-px w-12 md:w-20 bg-orange"></div>
+                        <span id="detail-price" class="text-4xl md:text-5xl font-black tracking-tighter text-orange"></span>
                     </div>
 
-                    <p class="text-gray-400 text-lg font-light mb-10 leading-relaxed">En main-propre sur Nancy 54, et en livraison dans toute la France.</p>
+                    <p class="text-gray-400 text-base md:text-lg font-light mb-8 md:mb-10 leading-relaxed">En main-propre sur Nancy 54, et en livraison dans toute la France.</p>
                     
-                    <div class="grid grid-cols-3 gap-8 py-10 border-y border-white/10 mb-16">
+                    <div class="grid grid-cols-3 gap-4 md:gap-8 py-8 md:py-10 border-y border-white/10 mb-12 md:mb-16">
                         <div>
-                            <span class="block text-[10px] font-black text-white/30 uppercase tracking-[0.3em] mb-2">État</span>
-                            <span class="text-white font-bold">Neuf</span>
+                            <span class="block text-[8px] md:text-[10px] font-black text-white/30 uppercase tracking-[0.2em] md:tracking-[0.3em] mb-2">État</span>
+                            <span class="text-sm md:text-base text-white font-bold">Neuf</span>
                         </div>
                         <div>
-                            <span class="block text-[10px] font-black text-white/30 uppercase tracking-[0.3em] mb-2">Couleur</span>
-                            <span id="detail-color" class="text-white font-bold"></span>
+                            <span class="block text-[8px] md:text-[10px] font-black text-white/30 uppercase tracking-[0.2em] md:tracking-[0.3em] mb-2">Couleur</span>
+                            <span id="detail-color" class="text-sm md:text-base text-white font-bold"></span>
                         </div>
                         <div>
-                            <span class="block text-[10px] font-black text-white/30 uppercase tracking-[0.3em] mb-2">En stock</span>
-                            <span id="detail-stock" class="text-orange font-bold uppercase"></span>
+                            <span class="block text-[8px] md:text-[10px] font-black text-white/30 uppercase tracking-[0.2em] md:tracking-[0.3em] mb-2">Stock</span>
+                            <span id="detail-stock" class="text-sm md:text-base text-orange font-bold uppercase"></span>
                         </div>
                     </div>
                     
-                    <a href="https://www.snapchat.com/@kayziahhh" target="_blank" class="w-full py-8 bg-orange text-white font-black uppercase tracking-[0.4em] text-xs hover:bg-white hover:text-navy transition-all flex items-center justify-center">
+                    <a href="https://t.me/kayziah" target="_blank" class="w-full py-6 md:py-8 bg-orange text-white font-black uppercase tracking-[0.4em] text-[10px] md:text-xs hover:bg-white hover:text-navy transition-all flex items-center justify-center shadow-lg shadow-orange/20">
                         Contacter
                     </a>
                 </div>
@@ -181,45 +199,41 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-navy py-24 border-t border-white/5">
+    <footer class="bg-navy py-10 md:py-12 border-t border-white/5">
         <div class="max-w-7xl mx-auto px-6 text-center">
-            <h2 class="text-5xl font-black mb-10 tracking-tighter logo-font">KZ<span class="text-orange">.</span></h2>
-            <div class="flex justify-center mb-16">
-                <a href="https://www.snapchat.com/@kayziahhh" target="_blank" class="snap-logo transition-all hover:scale-110 inline-block">
-                    <img src="https://www.logo.wine/a/logo/Snapchat/Snapchat-Ghost-Outlined-Logo.wine.svg" alt="Snapchat" class="w-20 h-20 md:w-24 md:h-24">
-                </a>
-            </div>
-            <p class="text-gray-600 text-[10px] font-black uppercase tracking-[0.6em]">© 2026 KZ</p>
+            <h2 class="text-3xl font-black mb-4 tracking-tighter logo-font uppercase">KZ<span class="text-orange">.</span></h2>
+            <p class="text-gray-600 text-[8px] md:text-[10px] font-black uppercase tracking-[0.6em]">© 2026 KZ</p>
         </div>
     </footer>
 
     <script>
         const tg = window.Telegram.WebApp;
-        tg.expand(); // ouvre la mini-app en plein écran
-
+        tg.expand();
         lucide.createIcons();
+
+        // Base de données avec tableaux d'images
         const articles = {
-            'lv-bonnet': { 
+            'bonnetlvmonogramnoir': { 
                 brand: "Louis Vuitton", 
-                title: "Bonnet My Monogram Éclipse",
+                title: "Bonnet My Monogram",
                 price: "20€", 
                 color: "Noir", 
                 stock: "3 dispos", 
-                img: "https://fr.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-bonnet-my-monogram-eclipse--M73469_PM2_Front%20view.jpg?impolicy=bgcolor&bgcolor=%23f8f8f8" 
-            },
-            'ami-pull': { 
-                brand: "Ami Paris", 
-                title: "Pull Ami de Cœur", 
-                price: "40€",
-                color: "Noir", 
-                stock: "3 dispos", 
-                img: "https://www.amiparis.com/cdn/shop/files/BFUSW035.730_907c60d6-c7f5-42db-ad23-09c19e76c163.jpg?v=1767930771&width=2560" 
+                images: [
+                    "https://fr.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-bonnet-my-monogram-eclipse--M73469_PM2_Front%20view.jpg?impolicy=bgcolor&bgcolor=%23f8f8f8",
+                    "https://fr.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-bonnet-my-monogram-eclipse--M73469_PM1_Worn%20view.jpg"
+                ] 
             }
         };
 
         const navbar = document.getElementById('navbar');
         const catView = document.getElementById('catalogue-view');
         const artView = document.getElementById('article-view');
+        const track = document.getElementById('carousel-track');
+        const dotsContainer = document.getElementById('carousel-dots');
+
+        let currentSlide = 0;
+        let totalSlides = 0;
 
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) navbar.classList.add('nav-glass');
@@ -228,15 +242,66 @@
 
         function goToArticle(id) {
             const data = articles[id];
-            document.getElementById('detail-img').src = data.img;
+            
+            // Réinitialiser le carrousel
+            currentSlide = 0;
+            totalSlides = data.images.length;
+            track.innerHTML = '';
+            dotsContainer.innerHTML = '';
+
+            // Injecter les images
+            data.images.forEach((imgSrc, index) => {
+                const slide = document.createElement('div');
+                slide.className = 'carousel-slide';
+                slide.innerHTML = `<img src="${imgSrc}" class="w-full h-full object-cover">`;
+                track.appendChild(slide);
+
+                const dot = document.createElement('div');
+                dot.className = `h-1.5 w-1.5 rounded-full bg-white/30 shadow-sm transition-all cursor-pointer ${index === 0 ? 'w-6 bg-orange' : ''}`;
+                dot.onclick = () => updateCarousel(index);
+                dotsContainer.appendChild(dot);
+            });
+
+            // Mettre à jour les textes
             document.getElementById('detail-brand').innerText = data.brand;
             document.getElementById('detail-title').innerText = data.title;
             document.getElementById('detail-price').innerText = data.price;
             document.getElementById('detail-color').innerText = data.color;
             document.getElementById('detail-stock').innerText = data.stock;
+            
+            updateCarousel(0);
+            
             catView.classList.add('page-hidden');
             artView.classList.remove('page-hidden');
             window.scrollTo(0, 0);
+            lucide.createIcons();
+        }
+
+        function updateCarousel(index) {
+            currentSlide = index;
+            track.style.transform = `translateX(-${index * 100}%)`;
+            
+            // Update dots
+            const dots = dotsContainer.children;
+            Array.from(dots).forEach((dot, i) => {
+                if (i === index) {
+                    dot.classList.add('w-6', 'bg-orange');
+                    dot.classList.remove('w-1.5', 'bg-white/30');
+                } else {
+                    dot.classList.remove('w-6', 'bg-orange');
+                    dot.classList.add('w-1.5', 'bg-white/30');
+                }
+            });
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) updateCarousel(currentSlide + 1);
+            else updateCarousel(0);
+        }
+
+        function prevSlide() {
+            if (currentSlide > 0) updateCarousel(currentSlide - 1);
+            else updateCarousel(totalSlides - 1);
         }
 
         function showCatalogue() {
@@ -244,6 +309,16 @@
             catView.classList.remove('page-hidden');
             window.scrollTo(0, 0);
         }
+
+        // Support du swipe (tactile) simple
+        let touchStartX = 0;
+        track.addEventListener('touchstart', e => touchStartX = e.changedTouches[0].screenX);
+        track.addEventListener('touchend', e => {
+            const touchEndX = e.changedTouches[0].screenX;
+            if (touchStartX - touchEndX > 50) nextSlide();
+            if (touchStartX - touchEndX < -50) prevSlide();
+        });
+
     </script>
 </body>
 </html>
